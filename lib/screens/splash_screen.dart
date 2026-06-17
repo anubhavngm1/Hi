@@ -64,7 +64,7 @@ class _SplashScreenState extends State<SplashScreen>
               const SizedBox(height: 24),
               Text(
                 'EBO Stay',
-                style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                style: const TextStyle(
                   color: AppTheme.gold, fontSize: 38,
                 ),
               ),

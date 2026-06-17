@@ -1,6 +1,5 @@
 // lib/utils/app_theme.dart
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'constants.dart';
 
 class AppTheme {
@@ -20,24 +19,14 @@ class AppTheme {
       background: bg,
     ),
     scaffoldBackgroundColor: bg,
-    textTheme: GoogleFonts.poppinsTextTheme().copyWith(
-      displayLarge: GoogleFonts.playfairDisplay(
-        color: primary, fontWeight: FontWeight.bold,
-      ),
-      displayMedium: GoogleFonts.playfairDisplay(
-        color: primary, fontWeight: FontWeight.bold,
-      ),
-      headlineMedium: GoogleFonts.playfairDisplay(
-        color: primary, fontWeight: FontWeight.w600,
-      ),
-    ),
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       backgroundColor: primary,
       foregroundColor: white,
       elevation: 0,
       centerTitle: true,
-      titleTextStyle: GoogleFonts.playfairDisplay(
+      titleTextStyle: TextStyle(
         color: white, fontSize: 20, fontWeight: FontWeight.bold,
+        fontFamily: 'serif',
       ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
@@ -46,7 +35,7 @@ class AppTheme {
         foregroundColor: primary,
         padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        textStyle: GoogleFonts.poppins(fontWeight: FontWeight.w600, fontSize: 16),
+        textStyle: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(
