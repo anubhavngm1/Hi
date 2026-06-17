@@ -23,5 +23,3 @@ class AppConstants {
   // Google Sign In
   static const String googleClientId = '368019213816-gro2843f7c0oc93rjp7l4c57cjnrigdd.apps.googleusercontent.com';
 }
-m';
-}
