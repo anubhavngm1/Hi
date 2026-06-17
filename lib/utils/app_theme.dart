@@ -16,7 +16,7 @@ class AppTheme {
       seedColor: primary,
       primary: primary,
       secondary: gold,
-      background: bg,
+      surface: bg,          // 'background' deprecated hai, 'surface' use karo
     ),
     scaffoldBackgroundColor: bg,
     appBarTheme: const AppBarTheme(

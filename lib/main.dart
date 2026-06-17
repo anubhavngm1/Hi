@@ -9,8 +9,15 @@ import 'screens/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  await NotificationService().initialize();
+
+  try {
+    await Firebase.initializeApp();
+    await NotificationService().initialize();
+  } catch (e) {
+    // Firebase init fail hone par bhi app chale
+    debugPrint('Firebase init error: $e');
+  }
+
   runApp(const EboStayApp());
 }
 

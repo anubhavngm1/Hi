@@ -19,10 +19,14 @@ class NotificationService {
   final _fcm = FirebaseMessaging.instance;
   final _localNotifications = FlutterLocalNotificationsPlugin();
 
+  static const _channelId = 'ebostay_channel';
+  static const _channelName = 'EBO Stay Notifications';
+  static const _channelDesc = 'Booking confirmations and reminders';
+
   static const _channel = AndroidNotificationChannel(
-    'ebostay_channel',
-    'EBO Stay Notifications',
-    description: 'Booking confirmations and reminders',
+    _channelId,
+    _channelName,
+    description: _channelDesc,
     importance: Importance.high,
   );
 
@@ -32,16 +36,25 @@ class NotificationService {
       alert: true, badge: true, sound: true,
     );
 
-    // Setup local notifications
-    await _localNotifications.initialize(
-      const InitializationSettings(
-        android: AndroidInitializationSettings('@mipmap/ic_launcher'),
-        iOS: DarwinInitializationSettings(),
-      ),
+    // Android init settings — v17 mein onDidReceiveNotificationResponse
+    const androidSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
+    const iosSettings = DarwinInitializationSettings();
+    const initSettings = InitializationSettings(
+      android: androidSettings,
+      iOS: iosSettings,
     );
 
+    await _localNotifications.initialize(
+      initSettings,
+      onDidReceiveNotificationResponse: (NotificationResponse response) {
+        // Notification tap handle karo yahan
+      },
+    );
+
+    // Android notification channel create karo
     await _localNotifications
-        .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+        .resolvePlatformSpecificImplementation<
+            AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(_channel);
 
     // Background handler
@@ -55,36 +68,39 @@ class NotificationService {
           notification.hashCode,
           notification.title,
           notification.body,
-          NotificationDetails(
+          const NotificationDetails(
             android: AndroidNotificationDetails(
-              _channel.id, _channel.name,
-              channelDescription: _channel.description,
+              _channelId,
+              _channelName,
+              channelDescription: _channelDesc,
               importance: Importance.high,
               priority: Priority.high,
               icon: '@mipmap/ic_launcher',
             ),
-            iOS: const DarwinNotificationDetails(),
+            iOS: DarwinNotificationDetails(),
           ),
         );
       }
     });
 
-    // Get & save token
+    // FCM token save karo
     await _saveFcmToken();
     _fcm.onTokenRefresh.listen(_uploadToken);
   }
 
   Future<void> _saveFcmToken() async {
-    final token = await _fcm.getToken();
-    if (token == null) return;
+    try {
+      final token = await _fcm.getToken();
+      if (token == null) return;
 
-    final prefs = await SharedPreferences.getInstance();
-    final saved = prefs.getString(AppConstants.fcmTokenKey);
+      final prefs = await SharedPreferences.getInstance();
+      final saved = prefs.getString(AppConstants.fcmTokenKey);
 
-    if (saved != token) {
-      await prefs.setString(AppConstants.fcmTokenKey, token);
-      await _uploadToken(token);
-    }
+      if (saved != token) {
+        await prefs.setString(AppConstants.fcmTokenKey, token);
+        await _uploadToken(token);
+      }
+    } catch (_) {}
   }
 
   Future<void> _uploadToken(String token) async {

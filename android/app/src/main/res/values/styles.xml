@@ -6,5 +6,9 @@
     <style name="NormalTheme" parent="@android:style/Theme.Black.NoTitleBar">
         <item name="android:windowBackground">?android:colorBackground</item>
     </style>
-    <style name="Checkout" parent="Theme.AppCompat.Light.NoActionBar"/>
+    <!-- Razorpay Checkout Theme -->
+    <style name="Checkout" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#0B1320</item>
+        <item name="colorAccent">#D4AF6A</item>
+    </style>
 </resources>

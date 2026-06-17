@@ -6,13 +6,13 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
     <application
         android:label="EBO Stay"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        tools:replace="android:icon">
 
         <activity
             android:name=".MainActivity"
@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
 
-        <!-- Firebase Messaging -->
+        <!-- Firebase Cloud Messaging -->
         <service
             android:name="com.google.firebase.messaging.FirebaseMessagingService"
             android:exported="false">
@@ -40,7 +40,7 @@
             </intent-filter>
         </service>
 
-        <!-- Razorpay - tools:replace fix karta hai conflict -->
+        <!-- Razorpay - conflict fix -->
         <activity
             android:name="com.razorpay.CheckoutActivity"
             android:exported="true"
@@ -50,5 +50,8 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2"/>
+    </application>
+</manifest>
+    android:value="2"/>
     </application>
 </manifest>
