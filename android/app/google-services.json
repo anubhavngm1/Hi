@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "323126253379",
+    "project_id": "ebo-stay-3626a",
+    "storage_bucket": "ebo-stay-3626a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:323126253379:android:e75b6b0da8c588f76e41f6",
+        "android_client_info": {
+          "package_name": "com.ebostay.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABlFE4HxocdRIRSqjtCUZYLkMFJP8e1NY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,36 @@
+<!-- android/app/src/main/AndroidManifest.xml ke andar yeh permissions add karo -->
+
+<!-- Internet + Notifications -->
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+<uses-permission android:name="android.permission.VIBRATE" />
+<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
+<!-- Razorpay ke liye -->
+<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+<!-- Application tag ke andar yeh service add karo (Firebase auto-adds mostly) -->
+<service
+    android:name="com.google.firebase.messaging.FirebaseMessagingService"
+    android:exported="false">
+    <intent-filter>
+        <action android:name="com.google.firebase.MESSAGING_EVENT" />
+    </intent-filter>
+</service>
+
+<!-- ============================================================ -->
+<!-- google-services.json kahan rakhna hai:                       -->
+<!-- android/app/google-services.json                             -->
+<!-- Firebase Console se download karo                            -->
+<!-- ============================================================ -->
+
+<!-- android/build.gradle mein add karo (project level): -->
+<!--
+classpath 'com.google.gms:google-services:4.4.0'
+-->
+
+<!-- android/app/build.gradle mein add karo: -->
+<!--
+apply plugin: 'com.google.gms.google-services'
+-->
