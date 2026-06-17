@@ -1,6 +1,6 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Permissions -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
@@ -40,11 +40,12 @@
             </intent-filter>
         </service>
 
-        <!-- Razorpay -->
+        <!-- Razorpay - tools:replace fix karta hai conflict -->
         <activity
             android:name="com.razorpay.CheckoutActivity"
             android:exported="true"
-            android:theme="@style/Checkout"/>
+            android:theme="@style/Checkout"
+            tools:replace="android:exported,android:theme"/>
 
         <meta-data
             android:name="flutterEmbedding"
